@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: frontend-node
+  name: frontend-node
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: frontend-node
+    spec:
+      containers:
+      - image: gcr.io/<PROJECT ID>/frontend:v1.0
+        name: frontend-node
+        ports:
+        - containerPort: 8080
+

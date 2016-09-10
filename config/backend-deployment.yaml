@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: backend-node
+  name: backend-node
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: backend-node
+    spec:
+      containers:
+      - image: gcr.io/<PROJECT ID>/backend:v1.0
+        name: backend-node
+        ports:
+        - containerPort: 8081
+
