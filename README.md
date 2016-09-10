@@ -15,7 +15,7 @@ The following is the fictional story of this lab.
 
 ## Prerequisites
 1. A Google Cloud Platform Account
-1. [A new Google Cloud Platform Project](https://console.developers.google.com/project) for this lab.
+1. [A new Google Cloud Platform Project](https://console.developers.google.com/project) for this lab and enable billing.
 1. [Enable the Google Compute Engine, Google Container Engine and Google Cloud Datastore APIs](https://console.cloud.google.com/flows/enableapi?apiid=compute_component,container,datastore)
 
 ## Do this first
@@ -245,8 +245,9 @@ In this example, you resumed the previous game by specifying the game ID. But th
 1. Make a copy of the deployment config for backend pods, and open it with vi
    editor.
   ```shell
+  $ cd ~/gke-gobang-app-example
   $ cp config/backend-deployment.yaml config/backend-deployment-v1_1.yaml
-  $ vi config config/backend-deployment-v1_1.yaml
+  $ vi config/backend-deployment-v1_1.yaml
   ```
 
 1. Replace the image tag from v1.0 to v1.1 as below.
