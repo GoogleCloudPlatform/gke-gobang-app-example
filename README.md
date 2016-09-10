@@ -15,12 +15,13 @@ The following is the fictional story of this lab.
 
 ## Prerequisites
 1. A Google Cloud Platform Account
-1. [Enable the Google Compute Engine and Google Container Engine APIs](https://console.cloud.google.com/flows/enableapi?apiid=compute_component,container)
+1. [A new Google Cloud Platform Project](https://console.developers.google.com/project) for this lab.
+1. [Enable the Google Compute Engine, Google Container Engine and Google Cloud Datastore APIs](https://console.cloud.google.com/flows/enableapi?apiid=compute_component,container,datastore)
 
 ## Do this first
 In this section you will start your [Google Cloud Shell](https://cloud.google.com/cloud-shell/docs/) and clone the lab code repository to it.
 
-1. Create a new Google Cloud Platform project: [https://console.developers.google.com/project](https://console.developers.google.com/project)
+1. [Open the Cloud Console](https://console.cloud.google.com/)
 
 1. Click the Google Cloud Shell icon in the top-right and wait for your shell to open:
 
