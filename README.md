@@ -15,7 +15,7 @@ The following is the fictional story of this lab.
 
 ## Prerequisites
 1. A Google Cloud Platform Account
-1. [A new Google Cloud Platform Project](https://console.developers.google.com/project) for this lab and enable billing.
+1. [A new Google Cloud Platform Project](https://console.developers.google.com/project) for this lab with billing enabled.
 1. [Enable the Google Compute Engine, Google Container Engine and Google Cloud Datastore APIs](https://console.cloud.google.com/flows/enableapi?apiid=compute_component,container,datastore)
 
 ## Do this first
@@ -60,7 +60,7 @@ In this section you will start your [Google Cloud Shell](https://cloud.google.co
     --link backend:backend frontend:v1.0
   ```
 
-1. Play the game using a CLI client. (Unfortunatelly, there's no fancy smartphone client apps at the moment.)
+1. Play the game using a CLI client. (Unfortunatelly, no fancy smartphone client app is provided at the moment.)
   ```shell
 $ API_URL=http://localhost:8080/api/v1 client/client.py
 Welcome to Gobang (Five in a Row) game.
@@ -109,7 +109,7 @@ Your game ID is 5649391675244544
 Your game ID is 5649391675244544
 See you again.
   ```
-How to play would be self-explanatory from the console messages. Your goal is to build a row of five consecutive stones. Please take a note of the game ID so that you can resume the game later.
+Gameplay is explained by example here with the console messages. Your goal is to build a row of five consecutive stones. Please make a note of the game ID so that you can resume the game at a later time.
 
 1. Stop and remove the containers on the Cloud Shell instance.
 
@@ -133,11 +133,11 @@ How to play would be self-explanatory from the console messages. Your goal is to
 ## Create a Kubernetes Cluster
 You'll use Google Container Engine to create and manage your Kubernetes cluster. Provision the cluster with `gcloud`:
 
-```shell
-$ gcloud container clusters create gobang-cluster \
-  --num-nodes 3 \
-  --scopes "https://www.googleapis.com/auth/datastore"
-```
+  ```shell
+  $ gcloud container clusters create gobang-cluster \
+    --num-nodes 3 \
+    --scopes "https://www.googleapis.com/auth/datastore"
+  ```
 Once that operation completes download the credentials for your cluster using the [gcloud CLI](https://cloud.google.com/sdk/):
 
   ```shell
@@ -193,7 +193,7 @@ You should see the list of pods, three pods for frontend and three pods for back
   $ kubectl create -f config/backend-service.yaml
   service "backend-service" created
   ```
-Confirm that backend-service provides the CLUTSER-IP, and frontend-service provides the CLUSTER-IP and EXTERNAL-IP.
+Confirm that backend-service provides CLUSTER-IP, and frontend-service provides both CLUSTER-IP and EXTERNAL-IP.
 
   ```
   $ kubectl get services
@@ -262,7 +262,7 @@ In this example, you resumed the previous game by specifying the game ID. But th
   $ kubectl apply -f config/backend-deployment-v1_1.yaml
   ```
 
-  Now, the backend pods will be automatically replaced with new images. The following events indicates that pods are replaced in a rolling update manner.
+  Now, the backend pods will be automatically replaced with new images. The following events indicate that pods are replaced through the rolling update.
 
 ```shell
 $ kubectl describe deployment/backend-node
@@ -321,7 +321,7 @@ Then, going back to the previous terminal, continue the game.
 9 - - - - - - - - - -
 (q:quit) x(0-9), y(0-9)?
 ```
-You will notice that the computer player has now become more intelligent.
+You will notice that the computer player has now become more intelligent!
 
 ## Clean up
 Clean up is really easy, but also super important: if you don't follow these instructions, you will continue to be billed for the Google Container Engine cluster you created.
