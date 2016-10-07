@@ -125,9 +125,9 @@ Gameplay is explained by example here with the console messages. Your goal is to
   $ docker tag backend:v1.0 gcr.io/$PROJECT_ID/backend:v1.0
   $ docker tag backend:v1.1 gcr.io/$PROJECT_ID/backend:v1.1
 
-  $ gcloud docker push gcr.io/$PROJECT_ID/frontend:v1.0
-  $ gcloud docker push gcr.io/$PROJECT_ID/backend:v1.0
-  $ gcloud docker push gcr.io/$PROJECT_ID/backend:v1.1
+  $ gcloud docker -- push gcr.io/$PROJECT_ID/frontend:v1.0
+  $ gcloud docker -- push gcr.io/$PROJECT_ID/backend:v1.0
+  $ gcloud docker -- push gcr.io/$PROJECT_ID/backend:v1.1
   ```
 
 ## Create a Kubernetes Cluster

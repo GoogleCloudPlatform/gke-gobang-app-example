@@ -13,7 +13,7 @@
 #     limitations under the License.
 
 from gcloud import datastore
-import os
+import os, time
 
 board_size = 10
 project_id = os.environ.get('PROJECT_ID')
@@ -56,6 +56,8 @@ def new_board():
         'face_string': "0"*(board_size**2),
     })
     ds_client.put(board)
+    while(not _get_board_entity(board.key.id)):
+        time.sleep(1)
     return board.key.id
 
 def get_board(board_id):
@@ -73,10 +75,9 @@ def delete_board(board_id):
         return -1
 
 def update_board(board_id, x, y, player):
-    with ds_client.transaction():
-        board = _get_board_entity(board_id)
-        face = _deserialize_face(board['face_string'])
-        face[y][x] = player
-        board['face_string'] = _serialize_face(face)
-        ds_client.put(board)
+    board = _get_board_entity(board_id)
+    face = _deserialize_face(board['face_string'])
+    face[y][x] = player
+    board['face_string'] = _serialize_face(face)
+    ds_client.put(board)
 
