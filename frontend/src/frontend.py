@@ -43,7 +43,7 @@ def _judge(board_id, player):
                 if all(board[y+d][x+d] == player for d in range(5)):
                     return True
             # check to left-down
-            if x - 4 > 0 and y + 4 < board_size:
+            if x - 4 >= 0 and y + 4 < board_size:
                 if all(board[y+d][x-d] == player for d in range(5)):
                     return True
     return False

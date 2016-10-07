@@ -75,7 +75,7 @@ def scoring_model(board_id, player):
                         score[y+d][x+d] += _score(num_player, num_opponent)
 
             # check to left-down
-            if x - 4 > 0 and y + 4 < board_size:
+            if x - 4 >= 0 and y + 4 < board_size:
                 num_player = sum(board[y+d][x-d] == player for d in range(5))
                 num_opponent = sum(board[y+d][x-d] == opponent for d in range(5))
                 for d in range(5):
