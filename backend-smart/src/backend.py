@@ -24,14 +24,16 @@ def _score(num_player, num_opponent):
     score = 0
     if num_opponent == 0:
         if num_player == 4:
-            score += 1000
+            score += 10**5
+        elif num_player == 3:
+            score += 10**3
         else:
             score += num_player
     if num_player == 0:
-        if num_opponent >= 4:
-            score += 800
-        elif num_opponent >= 3:
-            score += 500
+        if num_opponent == 4:
+            score += 10**4
+        elif num_opponent == 3:
+            score += 10**2
         else:
             score += num_opponent
     return score
