@@ -55,7 +55,7 @@ def scoring_model(board_id, player):
                 num_player = sum(board[y][x+dx] == player for dx in range(5))
                 num_opponent = sum(board[y][x+dx] == opponent for dx in range(5))
                 for dx in range(5):
-                    if board[y][x] == 0:
+                    if board[y][x+dx] == 0:
                         score[y][x+dx] += _score(num_player, num_opponent)
 
             # check to down
