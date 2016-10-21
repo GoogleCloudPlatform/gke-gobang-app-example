@@ -50,14 +50,13 @@ def _get_board_entity(board_id):
     return board
 
 def new_board():
-    key = ds_client.key('GameBoards')
-    board = datastore.Entity(key)
-    board.update({
-        'face_string': "0"*(board_size**2),
-    })
-    ds_client.put(board)
-    while(not _get_board_entity(board.key.id)):
-        time.sleep(1)
+    with ds_client.transaction():
+        key = ds_client.key('GameBoards')
+        board = datastore.Entity(key)
+        board.update({
+            'face_string': "0"*(board_size**2),
+        })
+        ds_client.put(board)
     return board.key.id
 
 def get_board(board_id):
@@ -68,16 +67,18 @@ def get_board(board_id):
 
 def delete_board(board_id):
     try:
-        key = ds_client.key('GameBoards', int(board_id))
-        ds_client.delete(key)
+        with ds_client.transaction():
+            key = ds_client.key('GameBoards', int(board_id))
+            ds_client.delete(key)
         return 0
     except:
         return -1
 
 def update_board(board_id, x, y, player):
-    board = _get_board_entity(board_id)
-    face = _deserialize_face(board['face_string'])
-    face[y][x] = player
-    board['face_string'] = _serialize_face(face)
-    ds_client.put(board)
+    with ds_client.transaction():
+        board = _get_board_entity(board_id)
+        face = _deserialize_face(board['face_string'])
+        face[y][x] = player
+        board['face_string'] = _serialize_face(face)
+        ds_client.put(board)
 
