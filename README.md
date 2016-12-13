@@ -34,6 +34,12 @@ In this section you will start your [Google Cloud Shell](https://cloud.google.co
   $ export PROJECT_ID="myproject-1"
   ```
 
+1. Create an App Engine application. This is required to prepare the Cloud Datastore environment in the project.
+
+  ```
+  $ gcloud beta app create --region=us-central
+  ```
+
 1. Clone the lab repository in your cloud shell, then `cd` into that dir:
 
   ```shell
