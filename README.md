@@ -31,7 +31,7 @@ In this section you will start your [Google Cloud Shell](https://cloud.google.co
 
   ```shell
   $ gcloud config set compute/zone us-central1-a
-  $ export PROJECT_ID="myproject-1"
+  $ export PROJECT_ID=$(gcloud config list project --format "value(core.project)")
   ```
 
 1. Create an App Engine application. This is required to prepare the Cloud Datastore environment in the project.
