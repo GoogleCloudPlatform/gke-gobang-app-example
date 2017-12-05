@@ -147,7 +147,7 @@ You'll use Google Container Engine to create and manage your Kubernetes cluster.
 Once that operation completes download the credentials for your cluster using the [gcloud CLI](https://cloud.google.com/sdk/):
 
   ```shell
-  $ gcloud container clusters get-credentials gobang-cluster
+  $ gcloud container clusters get-credentials gobang-cluster --zone us-central1-a
   Fetching cluster endpoint and auth data.
   kubeconfig entry generated for gobang-cluster.
   ```
