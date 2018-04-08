@@ -1,4 +1,4 @@
-FROM debian:8.4
+FROM debian:9.4
 LABEL maintainer "Etsuji Nakai <enakai@google.com>"
 ENV REFRESHED_AT 2017/02/28
 
