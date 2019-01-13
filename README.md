@@ -131,11 +131,22 @@ Gameplay is explained by example here with the console messages. Your goal is to
   $ docker tag backend:v1.0 gcr.io/$PROJECT_ID/backend:v1.0
   $ docker tag backend:v1.1 gcr.io/$PROJECT_ID/backend:v1.1
 
-  $ gcloud docker -- push gcr.io/$PROJECT_ID/frontend:v1.0
-  $ gcloud docker -- push gcr.io/$PROJECT_ID/backend:v1.0
-  $ gcloud docker -- push gcr.io/$PROJECT_ID/backend:v1.1
+  $ docker push gcr.io/$PROJECT_ID/frontend:v1.0
+  $ docker push gcr.io/$PROJECT_ID/backend:v1.0
+  $ docker push gcr.io/$PROJECT_ID/backend:v1.1
   ```
 
+1. Check the pushed images.
+
+  ```shell
+  $ gcloud auth configure-docker
+  $ gcloud container images list --repository=gcr.io/$PROJECT_ID
+  $ gcloud container images list-tags gcr.io/$PROJECT_ID/frontend
+  $ gcloud container images list-tags gcr.io/$PROJECT_ID/backend
+  ```
+
+This will show the image names and their tags.
+  
 ## Create a Kubernetes Cluster
 You'll use Google Container Engine to create and manage your Kubernetes cluster. Provision the cluster with `gcloud`:
 
