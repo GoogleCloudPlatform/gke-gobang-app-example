@@ -23,24 +23,24 @@ In this section you will start your [Google Cloud Shell](https://cloud.google.co
 
 1. [Open the Cloud Console](https://console.cloud.google.com/)
 
-1. Click the Google Cloud Shell icon in the top-right and wait for your shell to open:
+2. Click the Google Cloud Shell icon in the top-right and wait for your shell to open:
 
 ![](docs/img/cloud-shell.png)
 
-1. When the shell is open, set your default compute zone, and project ID which you have created for this lab.
+3. When the shell is open, set your default compute zone, and project ID which you have created for this lab.
 
   ```shell
   $ gcloud config set compute/zone us-central1-a
   $ export PROJECT_ID=$(gcloud config list project --format "value(core.project)")
   ```
 
-1. Create an App Engine application. This is required to prepare the Cloud Datastore environment in the project.
+4. Create an App Engine application. This is required to prepare the Cloud Datastore environment in the project.
 
   ```
   $ gcloud app create --region=us-central
   ```
 
-1. Clone the lab repository in your cloud shell, then `cd` into that dir:
+5. Clone the lab repository in your cloud shell, then `cd` into that dir:
 
   ```shell
   $ git clone https://github.com/GoogleCloudPlatform/gke-gobang-app-example.git
@@ -59,14 +59,14 @@ In this section you will start your [Google Cloud Shell](https://cloud.google.co
   $ docker build -t backend:v1.1 backend-smart/
   ```
 
-1. Run frontend and backend-dummy containers locally on the Cloud Shell instance.
+2. Run frontend and backend-dummy containers locally on the Cloud Shell instance.
   ```shell
   $ docker run -d --name backend -e PROJECT_ID=$PROJECT_ID backend:v1.0
   $ docker run -d --name frontend -p 8080:8080 -e PROJECT_ID=$PROJECT_ID \
     --link backend:backend frontend:v1.0
   ```
 
-1. Play the game using a CLI client. (Unfortunatelly, no fancy smartphone client app is provided at the moment.)
+3. Play the game using a CLI client. (Unfortunatelly, no fancy smartphone client app is provided at the moment.)
   ```shell
 $ API_URL=http://localhost:8080/api/v1 client/client.py
 Welcome to Gobang (Five in a Row) game.
@@ -117,14 +117,14 @@ See you again.
   ```
 Gameplay is explained by example here with the console messages. Your goal is to build a row of five consecutive stones. Please make a note of the game ID so that you can resume the game at a later time.
 
-1. Stop and remove the containers on the Cloud Shell instance.
+4. Stop and remove the containers on the Cloud Shell instance.
 
   ```shell
   $ docker stop frontend backend
   $ docker rm frontend backend
   ```
 
-1. Push the container images to the Google Container Registry.
+5. Push the container images to the Google Container Registry.
 
   ```shell
   $ docker tag frontend:v1.0 gcr.io/$PROJECT_ID/frontend:v1.0
@@ -136,7 +136,7 @@ Gameplay is explained by example here with the console messages. Your goal is to
   $ docker push gcr.io/$PROJECT_ID/backend:v1.1
   ```
 
-1. Check the pushed images.
+6. Check the pushed images.
 
   ```shell
   $ gcloud auth configure-docker
@@ -267,14 +267,14 @@ In this example, you resumed the previous game by specifying the game ID. But th
   $ vi config/backend-deployment-v1_1.yaml
   ```
 
-1. Replace the image tag from v1.0 to v1.1 as below.
+2. Replace the image tag from v1.0 to v1.1 as below.
   ```yaml
       spec:
       containers:
       - image: gcr.io/<PROJECT ID>/backend:v1.0  <-- change to v1.1
   ```
 
-1. Apply the modified deployment config.
+3. Apply the modified deployment config.
   ```shell
   $ kubectl apply -f config/backend-deployment-v1_1.yaml
   ```
